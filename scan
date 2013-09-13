@@ -1,0 +1,6 @@
+name=$1_`date +%y_%m_%d`
+scanimage --resolution=300 -x 205 -y 295 --mode=Lineart > ~/copy/$name.pnm
+convert -density 300 ~/copy/$name.pnm ~/copy/$name.ps
+convert -density 300 ~/copy/$name.pnm ~/copy/$name.png
+ps2pdf -sPAPERSIZE=a4 ~/copy/$name.ps ~/copy/$name.pdf
+#rm -f ~/copy/$name.pnm

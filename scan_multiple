@@ -1,0 +1,19 @@
+p=0
+base_name=$1
+join_cmd="gs -dNOPAUSE -sPAPERSIZE=a4 -sDEVICE=pdfwrite -sOUTPUTFILE=${base_name}.pdf -dBATCH"
+echo "Press any key to start scanning..."
+while read text
+do 
+   name=~/copy/${base_name}_$p
+   scanimage --resolution=300 -x 205 -y 295 --mode=Lineart > $name.pnm
+   convert -density 300 $name.pnm $name.ps
+   join_cmd="${join_command} $name"
+   p=`expr $p + 1`
+   echo "Press any key to scan next page or <ctrl>-d to finish"
+done
+
+echo ${join_cmd}
+
+${join_cmd}
+
+#rm -f ~/copy/$name.pnm

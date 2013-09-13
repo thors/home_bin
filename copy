@@ -1,0 +1,5 @@
+name=$1_`date +%y_%m_%d`
+scanimage --resolution=300 -x 215 -y 297 --mode=Lineart > ~/copy/$name.pnm
+convert -density 300 ~/copy/$name.pnm ~/copy/$name.ps
+lpr ~/copy/$name.ps
+rm -f ~/copy/$name.pnm
